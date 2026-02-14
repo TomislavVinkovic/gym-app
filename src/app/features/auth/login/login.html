@@ -1,0 +1,55 @@
+<div class="login-container">
+  <mat-card appearance="outlined" class="login-card">
+    
+    <mat-card-header>
+      <mat-card-title>Welcome Back</mat-card-title>
+      <mat-card-subtitle>Sign in to your account</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="you@example.com">
+          @if (loginForm.controls.email.hasError('email')) {
+            <mat-error>Please enter a valid email address</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+          @if (loginForm.controls.password.hasError('required')) {
+            <mat-error>Password is required</mat-error>
+          }
+        </mat-form-field>
+
+        @if (errorMessage()) {
+          <div class="error-banner">
+            {{ errorMessage() }}
+          </div>
+        }
+
+        <button mat-flat-button color="primary" type="submit" 
+                class="submit-btn full-width"
+                [disabled]="loginForm.invalid || isLoading()">
+          @if (isLoading()) {
+            Logging in...
+          } @else {
+            Sign In
+          }
+        </button>
+
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer class="login-footer">
+      <p>
+        Don't have an account? 
+        <a routerLink="/register">Register</a>
+      </p>
+    </mat-card-footer>
+
+  </mat-card>
+</div>

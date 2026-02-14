@@ -1,0 +1,47 @@
+<div class="verify-container">
+  <mat-card appearance="outlined" class="verify-card">
+    
+    <mat-card-header>
+      <mat-card-title>Verify your Email</mat-card-title>
+      <mat-card-subtitle>
+        We sent a verification link to: <strong>{{ currentUser?.email }}</strong>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="content">
+      <p>
+        You must verify your email address to access the dashboard.
+        Please check your inbox and click the link provided.
+      </p>
+      
+      <p class="hint">
+        Don't see it? Check your spam folder.
+      </p>
+
+      @if (message()) {
+        <div class="banner success">
+          {{ message() }}
+        </div>
+      }
+
+      @if (error()) {
+        <div class="banner error">
+          {{ error() }}
+        </div>
+      }
+    </mat-card-content>
+
+    <mat-card-actions align="start">
+      <button 
+        mat-flat-button 
+        color="primary" 
+        (click)="resendEmail()" 
+        [disabled]="isLoading() || countdownTimer() > 0"
+        class="resend-button"
+      >
+        {{ countdownTimerText() }}
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

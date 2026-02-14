@@ -1,0 +1,55 @@
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../core/auth/auth-service';
+import { MatButton } from '@angular/material/button';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '../../core/services/snackbar-service';
+
+@Component({
+  selector: 'app-dashboard',
+  imports: [
+    MatButton
+  ],
+  templateUrl: './dashboard.html',
+  styleUrl: './dashboard.css',
+})
+export class Dashboard {
+  private readonly route = inject(ActivatedRoute);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly snack = inject(SnackbarService);
+
+  ngOnInit() : void {
+    this.route.queryParams.subscribe(params => {
+      if (params['error'] === 'invalid_link') {
+        this.snack.showSnack('The verification link is invalid or expired.');
+        this.clearParams();
+      }
+
+      if (params['message'] === 'already_verified') {
+        this.snack.showSnack('Email already verified.');
+        this.clearParams();
+      }
+    });
+  }
+
+  logout() {
+    this.auth.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    })
+  }
+
+  private clearParams() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { error: null, message: null },
+      queryParamsHandling: 'merge',
+      replaceUrl: true
+    });
+  }
+}
