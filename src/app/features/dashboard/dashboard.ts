@@ -1,14 +1,17 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { AuthService } from '../../core/auth/auth-service';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarService } from '../../core/services/snackbar-service';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    MatButton
+    MatButton,
+    MatCardModule,
+    MatButtonModule
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
@@ -18,6 +21,8 @@ export class Dashboard {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
   private readonly snack = inject(SnackbarService);
+
+  profileCompleted = this.auth.profileCompleted;
 
   ngOnInit() : void {
     this.route.queryParams.subscribe(params => {
@@ -42,6 +47,10 @@ export class Dashboard {
         console.log(err);
       }
     })
+  }
+
+  goToEditProfile() {
+    this.router.navigate(['/profile']);
   }
 
   private clearParams() {

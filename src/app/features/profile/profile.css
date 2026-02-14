@@ -1,0 +1,140 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+/* === AVATAR STYLES === */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #e0e7ff; /* Indigo-100 */
+  color: #3f51b5; /* Indigo-500 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+/* Hover Effect: Show camera icon */
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.avatar-overlay mat-icon {
+  color: white;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.avatar-wrapper:hover .avatar-overlay {
+  opacity: 1;
+}
+
+.avatar-hint {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* === FORM STYLES === */
+.section-title {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.two-col {
+  grid-template-columns: 1fr 1fr;
+}
+
+.three-col {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.full-width {
+  width: 100%;
+  display: block;
+}
+
+.form-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-btn {
+  padding: 1.5rem 2rem; /* Bigger button */
+  font-size: 1.1rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .two-col, .three-col {
+    grid-template-columns: 1fr; /* Stack everything on mobile */
+  }
+  
+  .save-btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,11 @@
+.complete-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.edit-button {
+    margin-top: 0.5rem;
+    width: 100%;
+}

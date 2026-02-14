@@ -10,6 +10,14 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
+        path: 'profile',
+        loadComponent: () => import('./features/profile/profile')
+            .then(m => m.Profile),
+        canActivate: [authGuard]
+    },
+
+
+    {
         path: 'login',
         loadComponent: () => import('./features/auth/login/login').then(m => m.Login),
         canActivate: [anonymousGuard]

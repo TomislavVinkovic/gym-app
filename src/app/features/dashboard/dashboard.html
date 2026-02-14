@@ -1,1 +1,27 @@
+@if (!profileCompleted()) {
+    <mat-card appearance="outlined" class="complete-card">
+    
+    <mat-card-header>
+      <mat-card-title>Complete your profile</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="content">
+      <p>
+        You must complete your profile in order to enroll in the gym
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions align="start">
+      <button 
+        mat-flat-button 
+        color="primary" 
+        (click)="goToEditProfile()" 
+        class="edit-button"
+      >
+        Complete your profile
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+}
 <button matButton="filled" (click)="logout()">Logout</button>
