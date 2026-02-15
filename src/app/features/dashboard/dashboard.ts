@@ -23,6 +23,7 @@ export class Dashboard {
   private readonly snack = inject(SnackbarService);
 
   profileCompleted = this.auth.profileCompleted;
+  currentUser = this.auth.currentUser;
 
   ngOnInit() : void {
     this.route.queryParams.subscribe(params => {

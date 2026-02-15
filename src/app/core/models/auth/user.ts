@@ -3,6 +3,7 @@ export interface User {
     username: string;
     token: string;
     email_verified_at: string|null;
+    is_approved: string|null;
     image: string|null;
 
     first_name: string|null;

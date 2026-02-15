@@ -1,6 +1,5 @@
 @if (!profileCompleted()) {
-    <mat-card appearance="outlined" class="complete-card">
-    
+  <mat-card appearance="outlined" class="complete-card">
     <mat-card-header>
       <mat-card-title>Complete your profile</mat-card-title>
     </mat-card-header>
@@ -21,7 +20,19 @@
         Complete your profile
       </button>
     </mat-card-actions>
+  </mat-card>
+}
+@if(currentUser() && !currentUser()!.is_approved) {
+  <mat-card appearance="outlined" class="complete-card">
+    <mat-card-header>
+      <mat-card-title>Your profile is awaiting approval</mat-card-title>
+    </mat-card-header>
 
+    <mat-card-content class="content">
+      <p>
+        When our desk operator approves your profile, you will be able to apply for a membership
+      </p>
+    </mat-card-content>
   </mat-card>
 }
 <button matButton="filled" (click)="logout()">Logout</button>
